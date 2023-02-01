@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+    <meta charset="UTF-8">
+<head>
+    <meta name="description" content="Hotel Template">
+    <meta name="keywords" content="Hotel, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Agora</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Taviraj:300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/linearicons.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section other-page">
+        <div class="container-fluid">
+            <div class="inner-header">
+                <div class="logo">
+                    <a href="{{ url_for('index') }}"><img src="../static/img/logo.png" alt=""></a>
+                </div>
+                <div class="top-widget">
+                    <div class="top-info address">
+                        <img src="../static/img/placeholder.png" alt="">
+                        <span>Univ. Hanyang at Ansan<br />Ansan, Gyeonggi-do</span>
+                    </div>
+                    <div class="top-info phone-num">
+                        <img src="../static/img/phone.png" alt="">
+                        <span>+1 (603)535-4592</span>
+                    </div>
+                </div>
+                <div class="container">
+                    <nav class="main-menu mobile-menu">
+                        <ul>
+                            <li><a href="{{ url_for('aboutus') }}">About</a></li>
+                            <li><a href="{{ url_for('rooms') }}">Rooms</a>
+                                <ul class="drop-menu">
+                                    <li><a href="#">Standard Room</a></li>
+                                    <li><a href="#">Double Room</a></li>
+                                    <li><a href="#">Junior Suite</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Facilities</a></li>
+                            <li><a href="{{ url_for('news') }}">News</a></li>
+                            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                            <li><a href="{{ url_for('agora') }}">Agora</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero-section set-bg" data-setbg="../static/img/services-bg.jpg">
+        <div class="hero-text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Staff Management</h1>
+                    </div>
+                </div>
+                <div class="page-nav">
+                    <a href="{{ url_for('staff_info') }}" class="left-nav"><i class="lnr lnr-arrow-left"></i> Staff Info</a>
+                    <a href="{{ url_for('res_status') }}" class="right-nav">Reservation Status <i class="lnr lnr-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Blog Section Begin -->
+    <section class="contact-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-left">
+                        <div class="contact-form">
+                            <h5>Deploying</h5>
+                            <form action="{{ staffMgt }}" method="POST">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>직원</p>
+                                            <select name='staff_name'>
+                                                <option value="">이름</option>
+                                                {% for i in data_list %}
+                                                <option value="{{ i[0] }}">{{ i[1] }} {{ i[2] + '(' + i[0] + ')' }}</option>
+                                                {% endfor %}
+                                            </select>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <p>배정</p>
+                                            <select name='room_name'>
+                                                <option value="">객실</option>
+                                                {% for j in data_list2 %}
+                                                <option value="{{ j[0] }}">{{ j[0] }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <!--<input type="text" placeholder="Full Name"> -->
+                                            <!--<input type="text" placeholder="Full Name"> -->
+                                    </div>                                    
+                                    <div class="col-lg-12">
+                                        <div class="message">
+                                            <p>Message</p>
+                                            <div class="textarea">
+                                                <textarea placeholder="Customer Request is..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <button type="submit">Send<i class="lnr lnr-arrow-right"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="contact-form">
+                        <h2>Deployed</h2>
+                        <table width="800" class="staff_info">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for k in data_list3 %}
+                                <tr class="status_border">
+                                    <td>{{ k[0] }}</td>
+                                    <td>{{ k[1] }}호&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" onclick="deleteRow(this);">완료</button></td>
+                                </tr>                                
+                                {% endfor %}
+                            </tbody>
+                            
+                            <script type="text/javascript">
+                                function deleteRow(ths){
+                                    var $ths = $(ths);
+
+                                    $ths.parents("tr").remove()
+                                }
+                            </script>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-logo">
+                        <a href="{{ url_for('index') }}"><img src="../static/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row pb-50">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h5>Location</h5>
+                        <div class="widget-text">
+                            <i class="lnr lnr-map-marker"></i>
+                            <p>1525 Boring Lane, <br />Los Angeles, CA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h5>Reception</h5>
+                        <div class="widget-text">
+                            <i class="lnr lnr-phone-handset"></i>
+                            <p>+1 (603)535-4592</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h5>Shuttle Service</h5>
+                        <div class="widget-text">
+                            <i class="lnr lnr-phone-handset"></i>
+                            <p>+1 (603)535-4592</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h5>Restaurant</h5>
+                        <div class="widget-text">
+                            <i class="lnr lnr-phone-handset"></i>
+                            <p>+1 (603)535-4592</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="copyright-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+                <div class="privacy-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Photo Requests</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery.magnific-popup.min.js"></script>
+    <script src="../static/js/jquery-ui.min.js"></script>
+    <script src="../static/js/jquery.nice-select.min.js"></script>
+    <script src="../static/js/jquery.slicknav.js"></script>
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>
